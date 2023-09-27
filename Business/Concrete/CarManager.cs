@@ -35,9 +35,8 @@ namespace Business.Concrete
 
         public List<Car> GetById(int id)
         {
-            return _carDal.GetById(id);
+            return _carDal.GetAll(p=>p.CarId== id);
         }
-
         public void Update(Car car)
         {
             _carDal.Update(car);
