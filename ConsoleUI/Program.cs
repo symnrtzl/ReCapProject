@@ -24,10 +24,26 @@ namespace ConsoleUI
             }
 
             */
+            
+            /*
             carManager.GetCarsByBrandId(4);
             carManager.GetCarsByColorId(4);
 
             carManager.Add(new Car {  BrandId = 20, ColorId = 2, ModelYear = "2016", DailyPrice = 0, Description = "----" });//Hata İşlemleri tamamlandı
+            */
+
+            
+            foreach (var c in carManager.GetCarsByBrand(22))
+            {
+                Console.WriteLine(c.CarId);
+            }
+            
+            foreach (var c in carManager.GetCarsByColor(2))
+            {
+                Console.WriteLine(c.CarId);
+            }
+            
+
         }
     }
 }

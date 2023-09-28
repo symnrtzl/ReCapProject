@@ -47,6 +47,12 @@ namespace Business.Concrete
             return _carDal.GetAll(c=>c.CarId== id);
         }
 
+        public List<Car> GetCarsByBrand(int brandId)
+        {
+            var result=_carDal.GetAll(c=> c.BrandId== brandId);
+            return result;
+        }
+
         public void GetCarsByBrandId(int id)
         {
             
@@ -55,6 +61,12 @@ namespace Business.Concrete
             {
                 Console.WriteLine(car.BrandId);
             }
+        }
+
+        public List<Car> GetCarsByColor(int colorId)
+        {
+            var result= _carDal.GetAll(c=> c.ColorId== colorId);
+            return result;
         }
 
         public void GetCarsByColorId(int id)
