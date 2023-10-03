@@ -8,50 +8,28 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            //CarManagerTest();
 
-            CarManager carManager = new CarManager(new EfCarDal());
-            foreach (var car in carManager.GetCarDetails())
+            BrandManager brandManager = new BrandManager(new EfBrandDal());
+            var result = brandManager.GetAll();
+            if(result.Success==true) 
             {
-                Console.WriteLine(car.CarId + " - " + car.BrandName + " - " + car.ColorName);
+                foreach (var brand in result.Data)
+                {
+                    Console.WriteLine(brand.BrandName);
+
+                }
             }
 
+            Console.WriteLine("-----------------------------------------");
+
+            ColorManager colorManager=new ColorManager(new EfColorDal());
+            var result2=colorManager.GetById(2);
+            if(result2.Success==true)
+            {
+                Console.WriteLine(result2.Data.ColorName);
+            }
+            
         }
 
-        private static void CarManagerTest()
-        {
-            CarManager carManager = new CarManager(new EfCarDal());
-            /*
-            foreach(var c in carManager.GetAll())
-            {
-                Console.WriteLine(c.Description);
-            }
-
-            Console.WriteLine("--------------------------");
-            foreach (var c in carManager.GetById(3))
-            {
-                Console.WriteLine(c.Description);
-            }
-
-            */
-
-            /*
-            carManager.GetCarsByBrandId(4);
-            carManager.GetCarsByColorId(4);
-
-            carManager.Add(new Car {  BrandId = 20, ColorId = 2, ModelYear = "2016", DailyPrice = 0, Description = "----" });//Hata İşlemleri tamamlandı
-            */
-
-
-            foreach (var c in carManager.GetCarsByBrand(22))
-            {
-                Console.WriteLine(c.CarId);
-            }
-
-            foreach (var c in carManager.GetCarsByColor(2))
-            {
-                Console.WriteLine(c.CarId);
-            }
-        }
     }
 }
