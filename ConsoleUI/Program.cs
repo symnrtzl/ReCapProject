@@ -9,26 +9,28 @@ namespace ConsoleUI
         static void Main(string[] args)
         {
 
-            BrandManager brandManager = new BrandManager(new EfBrandDal());
-            var result = brandManager.GetAll();
+            UserManager userManager = new UserManager(new EfUserDal());
+            var result = userManager.GetAll();
             if(result.Success==true) 
             {
-                foreach (var brand in result.Data)
+                foreach (var user in result.Data)
                 {
-                    Console.WriteLine(brand.BrandName);
+                    Console.WriteLine(user.UserFirstName + " " + user.UserLastName + "-" + user.Email + "-" + user.Password);
 
                 }
             }
 
             Console.WriteLine("-----------------------------------------");
 
-            ColorManager colorManager=new ColorManager(new EfColorDal());
-            var result2=colorManager.GetById(2);
+            
+            CustomerManager customerManager=new CustomerManager(new EfCustomerDal());
+            var result2=customerManager.GetById(1);
             if(result2.Success==true)
             {
-                Console.WriteLine(result2.Data.ColorName);
+                Console.WriteLine(result2.Data.CompanyName);
             }
-            
+
+
         }
 
     }
