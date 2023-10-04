@@ -9,8 +9,6 @@ namespace Entities.Concrete
 {
     public class Car:IEntity
     {
-        //Id, BrandId(marka id), ColorId, ModelYear, DailyPrice, Description 
-
         public int CarId { get; set; }
         public int BrandId { get; set; }
         public int ColorId { get; set; }
