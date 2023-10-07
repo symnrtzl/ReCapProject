@@ -23,8 +23,17 @@ namespace Business.Concrete
 
         public IResult Add(Rental rental)
         {
-            _rentalDal.Add(rental);
-            return new Result(true, Messages.RentalAdded);
+            if (rental.ReturnDate != null) 
+            {
+                _rentalDal.Add(rental);
+                return new SuccessResult(Messages.RentalAdded);
+            }
+            else
+            {
+                return new ErrorResult(Messages.RentalNotAdded);
+            }
+            
+            
         }
 
         public IResult Delete(Rental rental)

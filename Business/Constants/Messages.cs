@@ -40,9 +40,11 @@ namespace Business.Constants
 
         //Rental Messages
         public static string RentalAdded = "Rental Eklendi";
+        public static string RentalNotAdded = "Rental Eklenmedi";
         public static string RentalDeleted = "Rental Silindi";
         public static string RentalUpdated = "Rental Güncelledi";
         public static string RentalsListed = "Rental Listelendi";
+
 
     }
 }
