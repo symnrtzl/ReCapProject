@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
@@ -25,6 +27,7 @@ namespace Business.Concrete
         {
             if (rental.ReturnDate != null) 
             {
+                ValidationTool.Validate(new RentalValidator(), rental);
                 _rentalDal.Add(rental);
                 return new SuccessResult(Messages.RentalAdded);
             }
