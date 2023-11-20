@@ -2,7 +2,7 @@
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
-using Core.CrossCuttingConcerns.Validation;
+using Core.Entities.Concrete;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
@@ -24,13 +24,6 @@ namespace Business.Concrete
             _userDal = userDal;
         }
 
-        [ValidationAspect(typeof(UserValidator))]
-        public IResult Add(User user)
-        {
-            _userDal.Add(user);
-            return new Result(true, Messages.UserAdded);
-        }
-
         public IResult Delete(User user)
         {
             _userDal.Delete(user);
@@ -50,7 +43,24 @@ namespace Business.Concrete
         public IResult Update(User user)
         {
             _userDal.Update(user);
-            return new Result(true,Messages.UserUpdated);
+            return new Result(true, Messages.UserUpdated);
+        }
+
+
+        public List<OperationClaim> GetClaims(User user)
+        {
+            return _userDal.GetClaims(user);
+        }
+
+        public IResult Add(User user)
+        {
+            _userDal.Add(user);
+            return new Result(true, Messages.UserAdded);
+        }
+
+        public User GetByMail(string email)
+        {
+            return _userDal.Get(u => u.Email == email);
         }
     }
 }
