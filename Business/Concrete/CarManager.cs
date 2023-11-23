@@ -3,6 +3,7 @@ using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Transaction;
 using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
@@ -36,6 +37,18 @@ namespace Business.Concrete
             return new Result(true,Messages.CarAdded);
              
             
+        }
+
+        [TransactionScopeAspect]
+        public IResult AddTransactionalTest(Car car)
+        {
+            Add(car);
+            if (car.DailyPrice < 2000)
+            {
+                throw new Exception("");
+            }
+            Add(car);
+            return null;
         }
 
         public IResult Delete(Car car)
