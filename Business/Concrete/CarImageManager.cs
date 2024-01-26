@@ -73,10 +73,6 @@ namespace Business.Concrete
         }
 
 
-
-
-
-
         private IResult CheckIfCarImageLimit(int carId)
         {
             var result = _carImageDal.GetAll(c => c.CarId == carId).Count;
